@@ -26,8 +26,8 @@ UserConfig::$admins[] = 1; // Sergey Chernyshev
  */
 UserConfig::$appName = 'Sample Instagram App';
 
-#UserConfig::loadModule('instagram');
-#new InstagramAuthenticationModule('dc8372fb7a2c418490494290ad54203a', 'c9d4749e8d624f238eb3d3a85851306e');
+UserConfig::loadModule('instagram');
+new InstagramAuthenticationModule('dc8372fb7a2c418490494290ad54203a', 'c9d4749e8d624f238eb3d3a85851306e');
 
 /*
  * It is usually important to obtain Terms of Service and Privacy Policy consent
