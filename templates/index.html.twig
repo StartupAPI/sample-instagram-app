@@ -1,0 +1,26 @@
+{% extends '@startupapi/page.html.twig' %}
+{% block content %}
+
+<style>
+.panel-heading {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
+
+<div class="container">
+	<div class="row">
+		<h1>Welcome, {{name}}!</h1>
+
+		{% for image in images %}
+		<div class="panel panel-default pull-left" style="margin: 5px; width: 182px">
+			<div class="panel-heading">{{image.caption}}</div>
+			<div class="panel-body">
+				<img src="{{image.url}}" width="150" height="150">
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -9,26 +9,21 @@ $result = $creds->makeOAuth2Request(
 	'https://api.instagram.com/v1/users/self/media/recent/',
 	'GET'
 );
-?><html>
-<head>
-	<title>Instagram Sample Application</title>
-	<?php StartupAPI::head(); ?>
-</head>
-<body>
-<div style="float: right"><?php StartupAPI::power_strip(); ?></div>
 
-<h1>Welcome, <?php echo $user->getName() ?>!</h1>
+// start with global template data needed for Startup API menus and stuff
+$template_info = StartupAPI::getTemplateInfo();
 
-<?php
-	$feed = json_decode(utf8_encode($result), true);
-	if ($feed['meta']['code'] == 200) {
-		foreach ($feed['data'] as $image) {
-			?>
-			<img src="<?php echo $image['images']['thumbnail']['url']?>">
-			<?php
-		}
+$template_info['name'] = $user->getName();
+
+$feed = json_decode(utf8_encode($result), true);
+if ($feed['meta']['code'] == 200) {
+	foreach ($feed['data'] as $image) {
+		$template_info['images'][] = array(
+			'url' => $image['images']['thumbnail']['url'],
+			'caption' => $image['caption']['text']
+		);
 	}
-?>
+}
 
-</body>
-</html>
+StartupAPI::$template->getLoader()->addPath(__DIR__ . '/templates', 'app');
+StartupAPI::$template->display('@app/index.html.twig', $template_info);
