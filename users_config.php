@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__ . '/config.php');
+
 /**
  * You must fill it in with some random string
  * this protects some of your user's data when sent over the network
