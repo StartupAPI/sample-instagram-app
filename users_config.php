@@ -4,22 +4,22 @@
  * this protects some of your user's data when sent over the network
  * and must be different from other sites
  */
-UserConfig::$SESSION_SECRET= 'erwoihunacefghinoudshiou9q98prqp89ywerp98qweoirqcpownerpo';
+UserConfig::$SESSION_SECRET = $randomness;
 
 /**
  * Database connectivity
  */
-UserConfig::$mysql_db = 'sample_instagram';
-UserConfig::$mysql_user = 'sample_instagram';
-UserConfig::$mysql_password = 'Pm3mnFMs4yKCwbzG';
-UserConfig::$mysql_host = 'showslow56-2.c769x3b09spr.us-east-1.rds.amazonaws.com';
-#UserConfig::$mysql_port = 3306;
-#UserConfig::$mysql_socket = '/tmp/mysql.sock'; // in case you are using socket to connect
+UserConfig::$mysql_db = $mysql_db;
+UserConfig::$mysql_user = $mysql_user;
+UserConfig::$mysql_password = $mysql_password;
+UserConfig::$mysql_host = isset($mysql_host) ? $mysql_host : 'localhost';
+UserConfig::$mysql_port = isset($mysql_port) ? $mysql_port : 3306;
+UserConfig::$mysql_socket = isset($mysql_port) ? $mysql_socket : null;
 
 /**
  * User IDs of admins for this instance (to be able to access dashboard at /users/admin/)
  */
-UserConfig::$admins[] = 1; // Sergey Chernyshev
+UserConfig::$admins[] = 1;
 
 /*
  * Name of your application to be used in UI and emails to users
@@ -27,7 +27,7 @@ UserConfig::$admins[] = 1; // Sergey Chernyshev
 UserConfig::$appName = 'Sample Instagram App';
 
 UserConfig::loadModule('instagram');
-new InstagramAuthenticationModule('dc8372fb7a2c418490494290ad54203a', 'c9d4749e8d624f238eb3d3a85851306e');
+new InstagramAuthenticationModule($oauth2_key, $oauth2_secret);
 
 /*
  * It is usually important to obtain Terms of Service and Privacy Policy consent
@@ -58,7 +58,7 @@ new InstagramAuthenticationModule('dc8372fb7a2c418490494290ad54203a', 'c9d4749e8
 /*
  * Uncomment next line to enable debug messages in error_log
  */
-UserConfig::$DEBUG = true;
+#UserConfig::$DEBUG = true;
 
 /**
  * Set these to point at your header and footer or leave them commented out to use default ones
@@ -70,8 +70,8 @@ UserConfig::$DEBUG = true;
  * Username and password registration configuration
  * just have these lines or comment them out if you don't want regular form registration
  */
-UserConfig::loadModule('usernamepass');
-new UsernamePasswordAuthenticationModule();
+#UserConfig::loadModule('usernamepass');
+#new UsernamePasswordAuthenticationModule();
 
 /**
  * Facebook Connect configuration
