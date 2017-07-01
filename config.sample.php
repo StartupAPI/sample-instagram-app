@@ -28,3 +28,18 @@ $mysql_password = '...password...';
  */
 $oauth2_key = '...oauth2.key.goes.here...';
 $oauth2_secret = '...oauth.secret.goes.here...';
+
+/**
+ * SMTP host
+ */
+$amazonSMTPHost = 'email-smtp.us-east-1.amazonaws.com';
+
+/**
+ * SMTP UserName
+ */
+$amazonSMTPUserName = '';
+
+/**
+ * SMTP Password
+ */
+$amazonSMTPPassword = '';
